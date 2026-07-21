@@ -28,3 +28,19 @@ spec:
           value: "1883"
         - name: MQTT_TOPIC
           value: rtl_433/#
+        - name: PGHOST
+          value: prod-postgres-rw.default.svc.cluster.local
+        - name: PGPORT
+          value: "5432"
+        - name: PGDATABASE
+          value: sdr433
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: sdr433-role-credentials
+              key: username
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sdr433-role-credentials
+              key: password

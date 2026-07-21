@@ -13,6 +13,7 @@ def on_connect(client, userdata, flags, reason_code, properties=None):
 
 
 def on_message(client, userdata, msg):
+    print('message')
     print(f"{msg.topic} {msg.payload.decode(errors='replace')}", flush=True)
 
 

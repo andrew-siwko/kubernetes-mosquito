@@ -23,6 +23,7 @@ pipeline {
             steps {
                 sh "kubectl apply -f k8s/mosquitto.yaml"
                 sh "kubectl apply -f k8s/mqtt-reader-deployment.yaml"
+                sh "kubectl apply -f k8s/reading-age-cronjob.yaml"
                 sh "kubectl rollout restart deployment/mqtt-reader"
             }
         }

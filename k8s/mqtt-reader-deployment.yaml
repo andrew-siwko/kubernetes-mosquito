@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mqtt-reader
+  namespace: default
+  labels:
+    app: mqtt-reader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mqtt-reader
+  template:
+    metadata:
+      labels:
+        app: mqtt-reader
+    spec:
+      containers:
+      - name: mqtt-reader
+        image: kregistry.siwko.org:5000/mqtt-reader:latest
+        imagePullPolicy: Always
+        env:
+        - name: MQTT_HOST
+          value: mosquitto.default.svc.cluster.local
+        - name: MQTT_PORT
+          value: "1883"
+        - name: MQTT_TOPIC
+          value: rtl_433/#

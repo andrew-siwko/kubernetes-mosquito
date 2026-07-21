@@ -21,6 +21,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                sh "kubectl apply -f k8s/mosquitto.yaml"
                 sh "kubectl apply -f k8s/mqtt-reader-deployment.yaml"
                 sh "kubectl rollout restart deployment/mqtt-reader"
             }
